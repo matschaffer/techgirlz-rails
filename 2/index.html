@@ -101,98 +101,276 @@
         </section>
 
         <section data-markdown>
+
+    5.times { print "Odelay!" }
         </section>
 
         <section data-markdown>
+
+    exit unless "restaurant".include? "aura"
         </section>
 
         <section data-markdown>
+
+    ['toast', 'cheese', 'wine'].each { |food| print food.capitalize }
         </section>
 
         <section data-markdown>
+          # Variables
+
+    x
+    y
+    banana2
+    phone_a_quail
         </section>
 
         <section data-markdown>
+          # Assignment
+
+    teddy_bear_fee = 121.08
         </section>
 
         <section data-markdown>
+          # Math
+
+          Can use `+` `-` `*` `/` or `**`
+
+    total = teddy_bear_fee + gratuity
+        </section>
+
+        <section>
+          <h1>Errors</h1>
+
+<pre><code>NameError: undefined local variable or method `gratuity' for main:Object
+    from (irb):3
+    from /Users/mat/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.7/lib/rails/commands/console.rb:47:in `start'
+    from /Users/mat/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.7/lib/rails/commands/console.rb:8:in `start'
+    from /Users/mat/.rvm/gems/ruby-1.9.3-p194/gems/railties-3.2.7/lib/rails/commands.rb:41:in `&lt;top (required)&gt;'
+    from script/rails:6:in `require'
+    from script/rails:6:in `&lt;main&gt;'
+</code></pre>
         </section>
 
         <section data-markdown>
+          # Fix it
+
+    gratuity = teddy_bear_fee * 0.20
+    total = teddy_bear_fee + gratuity
         </section>
 
         <section data-markdown>
+          # Numbers
+
+    1
+    2
+    -10000
+    123.456
         </section>
 
         <section data-markdown>
+          # Strings
+
+    "Hello"
+    "World"
         </section>
 
         <section data-markdown>
+          # Symbols
+
+    :a
+    :name
+    :id
         </section>
 
         <section data-markdown>
+          # Methods
+
+          often follow a dot!
+
+    "hi mat".capitalize
+    "".empty?
         </section>
 
         <section data-markdown>
+          # Method arguments
+
+    "mouse".pluralize(3)
         </section>
 
         <section data-markdown>
+          # Arrays
+
+    [1 ,2, 3]
+    [3,4,2,4].sort
+    ["a", 2, "c", :d]
         </section>
 
         <section data-markdown>
+          # Changing Arrays
+
+<pre><code>numbers = [1, 2]
+numbers << 3
+numbers.join(", ")
+</code></pre>
         </section>
 
         <section data-markdown>
+          # Hashes
+
+    data = {
+      name: "Peter",
+      profession: "lion tamer",
+      great_love: "flannel"
+    }
+    puts data[:name]
         </section>
 
         <section data-markdown>
+          # Changing hashes
+
+<pre><code>data = {}
+data[:name] = "John"</code></pre>
         </section>
 
         <section data-markdown>
+          # Contidionals
+
+          `nil` or `false` are "falsy"
+          anything else is "truthy"
+
+    plastic_cup = nil
+    if plastic_cup
+      print "Plastic cup is on the up 'n' up!"
+    end
+        </section>
+
+        <section>
+        <h1>if/else</h1>
+<pre><code>print( if at_hotel.nil?
+         "No clue if he's in the hotel."
+       elsif at_hotel == true
+         "Definitely in."
+       elsif at_hotel == false
+         "He's out."
+       else
+         "The system is on the fritz."
+       end )</code></pre>
         </section>
 
         <section data-markdown>
+          # Blocks
+
+    kitty_toys = [
+      {shape: 'sock', fabric: 'cashmere'},
+      {shape: 'mouse', fabric: 'calico'},
+      {shape: 'eggroll', fabric: 'chenille'}
+    ]
+    kitty_toys.sort_by { |toy| toy[:fabric] }
         </section>
 
         <section data-markdown>
+          # Common blocks
+
+    ['toast', 'cheese', 'wine'].each { |food|
+      eat(food)
+    }
         </section>
 
         <section data-markdown>
+          # Methods
+
+    def eat(food)
+      "Eaten: " + food
+    end
         </section>
 
         <section data-markdown>
+          # Classes
+
+          Group methods and variables
+
+    class Person
+      def initialize(name)
+        @name = name
+      end
+
+      def say_hi
+        puts "hi I'm " + @name
+      end
+    end
         </section>
 
         <section data-markdown>
+          # Objects
+
+          created from calling `new` on a class
+
+    person1 = Person.new("bob")
+    person1.say_hi
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+
+<pre><code>class Ninja < Person
+  def swing_sword
+    puts "Slash!"
+  end
+end</code></pre>
+        </section>
+
+        <section>
+          <h1>Some math homework</h1>
+
+          <p>Write as the product of repeated factors. Then simplify.</p>
+
+          <p>0.5<sup>3</sup></p>
+        </section>
+
+        <section>
+<pre><code>def expand(n, e)
+  parts = []
+  e.times { parts << n }
+  parts.join(" * ")
+end</code></pre>
+
+<pre><code>expand(0.5, 3)</code></pre>
+
+<pre><code>eval expand(0.5, 3)</code></pre>
         </section>
 
         <section data-markdown>
+          (−4)<sup>5</sup>
+
+          (2.7)<sup>2</sup>
+
+          2<sup>3</sup>
+
+          (−5)<sup>6</sup>
+
+          (8.1)<sup>3</sup>
         </section>
 
         <section data-markdown>
+          −4<sup>3</sup>
+
+          <code><pre>-4**3</pre></code>
+
+          <img src="maths.png" />
         </section>
 
         <section data-markdown>
-        </section>
+          # Homework
 
-        <section data-markdown>
-        </section>
+          Think about what kind of website you want to build!
 
-        <section data-markdown>
-        </section>
+          What kind of classes or methods might go into your project?
 
-        <section data-markdown>
-        </section>
+    Example: A blog
+      Posts: title, body, save, publish
+      Comments: author, body
 
-        <section data-markdown>
         </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
 			</div>
 
 			<!-- The navigational controls UI -->
