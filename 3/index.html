@@ -1,0 +1,371 @@
+<!doctype html>
+<htm llang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web Programming - Part 2: Ruby</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/print/pdf.css" type="text/css" media="print">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section data-markdown>
+          # Web Programming
+
+          slides.matschaffer.com/3
+				</section>
+
+        <section data-markdown>
+          # Data
+        </section>
+
+        <section data-markdown>
+          # Objects
+
+          Specific "Things" in ruby
+        </section>
+
+        <section data-markdown>
+          # Objects
+
+          * Me
+          * my "finding developers" blog post
+          * your comment on piazza
+          * Minecraft
+          * a purple pen
+          * a tweet
+          * the Eagles
+        </section>
+
+        <section data-markdown>
+          # Classes
+
+          Types of "things"
+        </section>
+
+        <section data-markdown>
+          # Classes
+
+          * Person
+          * Post
+          * Comment
+          * Player
+          * Game
+          * Pen
+          * Message
+          * Team
+        </section>
+
+
+        <section data-markdown>
+          # Classes?
+
+          * Me
+          * my "finding developers" blog post
+          * your comment on piazza
+          * Minecraft
+          * a purple pen
+          * a tweet
+          * the Eagles
+        </section>
+
+
+        <section data-markdown>
+          # I'm making:
+          ## a League App
+
+          <img src="leagueapp.png" />
+        </section>
+
+
+        <section data-markdown>
+          # What classes should I have?
+        </section>
+
+        <section data-markdown>
+          # My classes
+
+          * Team
+          * Player
+          * Venue
+          * Game
+        </section>
+
+        <section data-markdown>
+          # Attributes
+
+          Data that makes an object specific
+        </section>
+
+        <section data-markdown>
+          # What attributes would Team have?
+        </section>
+
+        <section data-markdown>
+          # Team
+
+          * name
+          * description
+          * logo
+          * (id, created\_at, updated\_at)
+        </section>
+
+        <section data-markdown>
+          # Types
+
+          Tells Ruby what kind of data an attribute holds
+
+          * string
+          * integer
+          * decimal
+          * datetime
+        </section>
+
+        <section data-markdown>
+          # Team Attribute Types?
+
+          * name
+          * description
+          * logo
+          * (id, created\_at, updated\_at)
+        </section>
+
+        <section data-markdown>
+          # Model =
+
+          Class + Attributes + Types ( + methods)
+        </section>
+
+        <section data-markdown>
+          # Make models with
+
+              rails generate model ...
+        </section>
+
+        <section>
+          <pre><code>rails generate model team \
+          name:string \
+          description:string \
+          logo:string</code></pre>
+        </section>
+
+        <section data-markdown>
+          Look in app/models/team.rb
+
+          That's your model
+
+          <pre><code>class Team &lt; ActiveRecord::Base
+  attr_accessible :description, :logo, :name
+end</code></pre>
+        </section>
+
+        <section data-markdown>
+          So destroy the model
+
+          <pre><code>rails destroy model team</code></pre>
+
+          And make a scaffold
+
+          <pre><code>rails generate scaffold team \
+          name:string \
+          description:string \
+          logo:string</code></pre>
+        </section>
+
+        <section data-markdown>
+          # Scaffold =
+
+          Model + Views + Controllers
+        </section>
+
+        <section data-markdown>
+          run this
+
+          <pre><code>rake db:migrate</code></pre>
+
+          * start your sever
+
+          * go to [http://localhost:3000/teams](http://localhost:3000/teams)
+
+          <img src="team_scaffold.png" />
+        </section>
+
+        <section data-markdown>
+          <img src="mvc.png" />
+        </section>
+
+        <section data-markdown>
+          <img src="vc_log.png" >
+        </section>
+
+        <section data-markdown>
+          # Try putting in some data
+        </section>
+
+        <section data-markdown>
+          # How about a real image?
+        </section>
+
+        <section data-markdown>
+          <img src="show.png" />
+        </section>
+
+        <section data-markdown>
+          app/views/teams/show.html.erb
+
+          before
+
+          <img src="viewbefore.png" />
+
+          after
+
+          <img src="viewafter.png" />
+        </section>
+
+        <section data-markdown>
+          <img src="viewafter.png" />
+
+          or
+
+          <img src="viewimgtag.png" />
+        </section>
+
+        <section data-markdown>
+          # Views
+
+          <pre><code>&lt;p&gt;Mix html &lt;%= with_ruby_code %&gt;&lt;/p&gt;</code></pre>
+        </section>
+
+        <section data-markdown>
+          # Try some things
+
+          <img src="viewtests.png" />
+        </section>
+
+        <section data-markdown>
+          <img src="instancepointer.png" >
+        </section>
+
+        <section data-markdown>
+          Come from the controller
+
+          app/controllers/teams_controller.rb
+
+          <img src="action.png" />
+        </section>
+
+        <section data-markdown>
+          # Try it out, see what breaks!
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+        <section data-markdown>
+        </section>
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme || 'sky', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
