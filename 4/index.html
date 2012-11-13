@@ -44,6 +44,10 @@
 
         <section data-markdown>
           # Deployment
+
+          * Internet
+          * Heroku
+          * Git
         </section>
 
         <section data-markdown>
@@ -57,111 +61,131 @@
         </section>
 
         <section data-markdown>
+          # Try it out
+
+          In Bash (not 'rails console')
+
+          Show google's IP
+
+              ping google.com
+
+          Show all the IPs!!
+
+              traceroute google.com
+
         </section>
 
         <section data-markdown>
+          ## One name
+
+          * localhost
+
+          ## Many IPs
+
+          * 127.0.0.1
+          * 0.0.0.0
+          * ::1
         </section>
 
         <section data-markdown>
+          ## Heroku gives your app a public name
+
+          http://myawesomeapp.herokuapp.com
         </section>
 
         <section data-markdown>
+          Make an account on heroku.com
+
+          <img src="heroku.png" />
         </section>
 
         <section data-markdown>
+          Check your email, install the toolbelt
+
+          <img src="toolbelt.png" />
         </section>
 
         <section data-markdown>
+          # Git
+
+          * Helps synchronize code
+          * How we push code to heroku
         </section>
 
         <section data-markdown>
+          Start a git repository
+
+              git init
+
         </section>
 
         <section data-markdown>
+          Start a commit
+
+          <img src="commit.png" />
         </section>
 
         <section data-markdown>
+          <img src="gitsteps.png" />
         </section>
 
         <section data-markdown>
+          # Fix your Gemfile
+
+          Gemfile
+
+              group :development, :test do
+                gem 'sqlite3'
+              end
+
+              group :production do
+                gem 'pg'
+              end
         </section>
 
         <section data-markdown>
+          # Run "bundle"
+
+          After every time you change Gemfile
+
+              bundle --without production
         </section>
 
         <section data-markdown>
+          Commit again
+
+          <img src="commit.png" />
         </section>
 
         <section data-markdown>
+          <img src="gitsteps.png" />
         </section>
 
         <section data-markdown>
+          # Create a heroku site
+
+              heroku create matsawesomeapp
         </section>
 
         <section data-markdown>
+          # Push the code
+
+              git push heroku master
         </section>
 
         <section data-markdown>
+          # Set up your heroku data
+
+              heroku run rake db:migrate
         </section>
 
         <section data-markdown>
+          # Check it out!
         </section>
 
         <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
+          ## Next week:
+          # views
         </section>
 			</div>
 
