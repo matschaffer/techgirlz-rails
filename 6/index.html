@@ -39,207 +39,152 @@
         <section data-markdown>
           # Web Programming
 
-          slides.matschaffer.com/5
+          slides.matschaffer.com/6
 				</section>
 
         <section data-markdown>
-          # Views
+          # Add-ons
         </section>
 
         <section data-markdown>
-          What happens?
-
-          <img src="browser.png" />
+          <img src="diagram.png" />
         </section>
 
         <section data-markdown>
-          # Incoming, the Request
-
-          * Browser
-          * Web server (webrick)
-          * Router (`config/routes.rb`)
-          * Controller (`app/controllers`)
-          * \+ action (`def index`)
+          <img src="addons.png" />
         </section>
 
         <section data-markdown>
-          Webrick
-
-          <img src="webrick.png" />
+          <img src="cloudinary.png " />
         </section>
 
         <section data-markdown>
-          Router
+          *$ Terminal*
 
-          *config/routes.rb*
+              heroku addons:add cloudinary
+        </section>
 
-          <pre><code>LeagueApp:::Application.routes.draw do
-  resources :teams
+        <section data-markdown>
+          <img src="verifyprompt.png" />
+        </section>
+
+        <section data-markdown>
+          Switch to your TechGirlz app
+
+          *$ Terminal*
+
+              $ git remote rm heroku
+
+              $ git remote add heroku \
+                  git@heroku.com:tg-YOUR_FIRST_NAME.git
+
+              $ git push heroku master
+
+              $ heroku run rake db:migrate
+
+        </section>
+
+        <section data-markdown>
+          *Gemfile*
+
+              gem 'carrierwave'
+              gem 'cloudinary'
+
+          *$ Terminal*
+
+              bundle
+
+        </section>
+
+        <section data-markdown>
+          *$ Terminal*
+
+              rails generate uploader logo
+
+          *app/uploaders/logo_uploader.rb*
+
+<pre><code>class LogoUploader &lt; CarrierWave::Uploader::Base
+  if ENV['CLOUDINARY']
+    include Cloudinary::CarrierWave
+  else
+    storage :file
+  end
 end</code></pre>
+
+          (remove everything else)
         </section>
 
         <section data-markdown>
-          Showing all routes
+          *app/models/team.rb*
 
-<pre><code>$ rake routes
-   GET    /teams         teams#index
-   POST   /teams         teams#create
-   GET    /teams/new      teams#new
-   GET    /teams/:id/edit teams#edit
-   GET    /teams/:id      teams#show
-   PUT    /teams/:id      teams#update
-   DELETE /teams/:id      teams#destroy</code></pre>
+              attr_accessible :desc..., :logo_cache
+              mount_uploader :logo, LogoUploader
 
+          *app/views/teams/_form.html.erb*
+
+<pre><code>&lt;%= f.file_field :logo %&gt;
+&lt;%= f.hidden_field :logo_cache %&gt;</code></pre>
         </section>
 
         <section data-markdown>
-          Arbitrary routes
+          Sending email
 
-<pre><code># verb '/path' => 'controller#action'
-
-get '/also_teams' => 'teams#index'</code></pre>
+          <img src="sendgrid.png" />
         </section>
 
         <section data-markdown>
-          Controller
+          Configure your app
 
-          *app/controllers/teams_controller.rb*
+          *config/environments/production.rb*
 
-<pre><code>class TeamsController &lt; ApplicationController
-  def index
-    @teams = Team.all
+<pre><code>config.action_mailer.smtp_settings = {
+  :address        =&gt; 'smtp.sendgrid.net',
+  :port           =&gt; '587',
+  :authentication =&gt; :plain,
+  :user_name  =&gt; ENV['SENDGRID_USERNAME'],
+  :password   =&gt; ENV['SENDGRID_PASSWORD'],
+  :domain         =&gt; 'heroku.com'
+}
+
+config.action_mailer.default_url_options =
+  { :host =&gt; "tg-YOURNAME.herokapp.com"] }</code></pre>
+        </section>
+
+        <section data-markdown>
+          Make a mailer
+
+          *$ Terminal*
+
+              rails generate mailer notifications new_team
+
+          Now look in app/mailers/notifications.rb
+
+          And app/views/notifications/new_team.text.erb
+        </section>
+
+        <section data-markdown>
+          Send the email from the controller
+
+<pre><code>class TeamsController
+  def create
+    ...
+    if @team.save
+      Notifications.new_team.deliver
+    end
   end
 end</code></pre>
         </section>
 
         <section data-markdown>
-          # The Response
+          Look in your server console to see it
 
-          * Model (`app/models`)
-          * \+ View (`app/views`)
-          * Resulting HTML
-          * Rack Middleware
-          * Webrick
-          * Browser
-        </section>
-
-        <section data-markdown>
-          # Model
-
-<pre><code>class Team &lt; ActiveRecord::Base
-end</code></pre>
-        </section>
-
-        <section data-markdown>
-          Views
-
-          *app/views/layouts/application.html.erb*
-
-<pre><code>&lt;html&gt;
-&lt;head&gt;
-  &lt;%= stylesheet_link_tag "application" %&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;%= yield %&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-          *app/views/teams/index.html.erb*
-
-<pre><code>&lt;ul&gt;
-  &lt;% @teams.each do |team| %&gt;
-    &lt;li&gt;&lt;%= team.name %&gt;
-  &lt;% end %&gt;
-&lt;/ul&gt;</code></pre>
-        </section>
-
-        <section data-markdown>
-          How can we capitalize the team name?
-
-          <img src="lowerteam.png" />
-          <img src="lowerteam2.png" />
-        </section>
-
-        <section data-markdown>
-<pre><code>class Team &lt; ActiveRecord::Base
-  def title
-    name.capitalize
-  end
-end</code></pre>
-        </section>
-
-        <section data-markdown>
-<pre><code>&lt;ul&gt;
-  &lt;% @teams.each do |team| %&gt;
-    &lt;li&gt;&lt;%= team.title %&gt;
-  &lt;% end %&gt;
-&lt;/ul&gt;</code></pre>
-        </section>
-
-        <section data-markdown>
-          How can we style this page?
-
-          <img src="styled.png" />
-        </section>
-
-        <section data-markdown>
-          <img src="assets.png" />
-        </section>
-
-        <section data-markdown>
-          *assets/stylesheets/application.css*
-
-              body {
-                background-image: url('/assets/hearts.gif');
-                color: white;
-              }
-
-          *assets/stylesheets/scaffold.css.scss*
-
-          (Delete this)
-
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
-        </section>
-
-        <section data-markdown>
+<pre><code>From: from@example.com
+To: to@example.org
+Message-ID: <4f6096a992767_1ff43ff11b9325c862492@schaffer.local.mail>
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit</code></pre>
         </section>
 
 			</div>
