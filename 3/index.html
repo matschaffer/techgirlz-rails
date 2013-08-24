@@ -99,9 +99,9 @@
 
         <section data-markdown>
           # I'm making:
-          ## a League App
+          ## a Message Board App
 
-          <img src="leagueapp.png" />
+          
         </section>
 
 
@@ -112,10 +112,8 @@
         <section data-markdown>
           # My classes
 
-          * Team
-          * Player
-          * Venue
-          * Game
+          * Post
+          * User
         </section>
 
         <section data-markdown>
@@ -129,11 +127,11 @@
         </section>
 
         <section data-markdown>
-          # Team
+          # Post
 
           * name
           * description
-          * logo
+          * image
           * (id, created\_at, updated\_at)
         </section>
 
@@ -149,11 +147,11 @@
         </section>
 
         <section data-markdown>
-          # Team Attribute Types?
+          # Post Attribute Types?
 
           * name
           * description
-          * logo
+          * image
           * (id, created\_at, updated\_at)
         </section>
 
@@ -170,33 +168,33 @@
         </section>
 
         <section>
-          <pre><code>rails generate model team \
+          <pre><code>rails generate model post \
           name:string \
           description:string \
           logo:string</code></pre>
         </section>
 
         <section data-markdown>
-          Look in app/models/team.rb
+          Look in app/models/post.rb
 
           That's your model
 
-          <pre><code>class Team &lt; ActiveRecord::Base
-  attr_accessible :description, :logo, :name
+          <pre><code>class Post &lt; ActiveRecord::Base
+  attr_accessible :description, :image, :name
 end</code></pre>
         </section>
 
         <section data-markdown>
           So destroy the model
 
-          <pre><code>rails destroy model team</code></pre>
+          <pre><code>rails destroy model post</code></pre>
 
           And make a scaffold
 
-          <pre><code>rails generate scaffold team \
+          <pre><code>rails generate scaffold post \
           name:string \
           description:string \
-          logo:string</code></pre>
+          image:string</code></pre>
         </section>
 
         <section data-markdown>
@@ -212,9 +210,9 @@ end</code></pre>
 
           * start your sever
 
-          * go to [http://localhost:3000/teams](http://localhost:3000/teams)
+          * go to [http://localhost:3000/posts](http://localhost:3000/posts)
 
-          <img src="team_scaffold.png" />
+         
         </section>
 
         <section data-markdown>
@@ -249,7 +247,7 @@ end</code></pre>
         </section>
 
         <section data-markdown>
-          app/views/teams/show.html.erb
+          app/views/posts/show.html.erb
 
           before
 
