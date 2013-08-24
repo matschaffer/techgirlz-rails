@@ -99,11 +99,11 @@
         <section data-markdown>
           *$ Terminal*
 
-              rails generate uploader logo
+              rails generate uploader image
 
-          *app/uploaders/logo_uploader.rb*
+          *app/uploaders/image_uploader.rb*
 
-<pre><code>class LogoUploader &lt; CarrierWave::Uploader::Base
+<pre><code>class ImageUploader &lt; CarrierWave::Uploader::Base
   if ENV['CLOUDINARY']
     include Cloudinary::CarrierWave
   else
@@ -115,15 +115,15 @@ end</code></pre>
         </section>
 
         <section data-markdown>
-          *app/models/team.rb*
+          *app/models/post.rb*
 
-              attr_accessible :desc..., :logo_cache
-              mount_uploader :logo, LogoUploader
+              attr_accessible :desc..., :image_cache
+              mount_uploader :image, ImageUploader
 
-          *app/views/teams/_form.html.erb*
+          *app/views/images/_form.html.erb*
 
-<pre><code>&lt;%= f.file_field :logo %&gt;
-&lt;%= f.hidden_field :logo_cache %&gt;</code></pre>
+<pre><code>&lt;%= f.file_field :image %&gt;
+&lt;%= f.hidden_field :image_cache %&gt;</code></pre>
         </section>
 
         <section data-markdown>
@@ -155,21 +155,21 @@ config.action_mailer.default_url_options =
 
           *$ Terminal*
 
-              rails generate mailer notifications new_team
+              rails generate mailer notifications new_post
 
           Now look in app/mailers/notifications.rb
 
-          And app/views/notifications/new_team.text.erb
+          And app/views/notifications/new_post.text.erb
         </section>
 
         <section data-markdown>
           Send the email from the controller
 
-<pre><code>class TeamsController
+<pre><code>class PostsController
   def create
     ...
-    if @team.save
-      Notifications.new_team.deliver
+    if @post.save
+      Notifications.new_post.deliver
     end
   end
 end</code></pre>
