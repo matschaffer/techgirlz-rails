@@ -74,7 +74,7 @@
           *config/routes.rb*
 
           <pre><code>LeagueApp:::Application.routes.draw do
-  resources :teams
+  resources :posts
 end</code></pre>
         </section>
 
@@ -82,13 +82,13 @@ end</code></pre>
           Showing all routes
 
 <pre><code>$ rake routes
-   GET    /teams         teams#index
-   POST   /teams         teams#create
-   GET    /teams/new      teams#new
-   GET    /teams/:id/edit teams#edit
-   GET    /teams/:id      teams#show
-   PUT    /teams/:id      teams#update
-   DELETE /teams/:id      teams#destroy</code></pre>
+   GET    /posts         posts#index
+   POST   /posts         posts#create
+   GET    /posts/new      posts#new
+   GET    /posts/:id/edit posts#edit
+   GET    /posts/:id      posts#show
+   PUT    /posts/:id      posts#update
+   DELETE /posts/:id      posts#destroy</code></pre>
 
         </section>
 
@@ -97,17 +97,17 @@ end</code></pre>
 
 <pre><code># verb '/path' => 'controller#action'
 
-get '/also_teams' => 'teams#index'</code></pre>
+get '/also_posts' => 'posts#index'</code></pre>
         </section>
 
         <section data-markdown>
           Controller
 
-          *app/controllers/teams_controller.rb*
+          *app/controllers/posts_controller.rb*
 
-<pre><code>class TeamsController &lt; ApplicationController
+<pre><code>class PostController &lt; ApplicationController
   def index
-    @teams = Team.all
+    @posts = Post.all
   end
 end</code></pre>
         </section>
@@ -126,7 +126,7 @@ end</code></pre>
         <section data-markdown>
           # Model
 
-<pre><code>class Team &lt; ActiveRecord::Base
+<pre><code>class Post &lt; ActiveRecord::Base
 end</code></pre>
         </section>
 
@@ -144,24 +144,23 @@ end</code></pre>
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-          *app/views/teams/index.html.erb*
+          *app/views/posts/index.html.erb*
 
 <pre><code>&lt;ul&gt;
-  &lt;% @teams.each do |team| %&gt;
-    &lt;li&gt;&lt;%= team.name %&gt;
+  &lt;% @posts.each do |post| %&gt;
+    &lt;li&gt;&lt;%= post.name %&gt;
   &lt;% end %&gt;
 &lt;/ul&gt;</code></pre>
         </section>
 
         <section data-markdown>
-          How can we capitalize the team name?
+          How can we capitalize the post name?
 
-          <img src="lowerteam.png" />
-          <img src="lowerteam2.png" />
+         
         </section>
 
         <section data-markdown>
-<pre><code>class Team &lt; ActiveRecord::Base
+<pre><code>class Post &lt; ActiveRecord::Base
   def title
     name.capitalize
   end
@@ -170,8 +169,8 @@ end</code></pre>
 
         <section data-markdown>
 <pre><code>&lt;ul&gt;
-  &lt;% @teams.each do |team| %&gt;
-    &lt;li&gt;&lt;%= team.title %&gt;
+  &lt;% @posts.each do |post| %&gt;
+    &lt;li&gt;&lt;%= post.title %&gt;
   &lt;% end %&gt;
 &lt;/ul&gt;</code></pre>
         </section>
